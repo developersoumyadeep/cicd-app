@@ -26,6 +26,7 @@ pipeline {
             }
             steps {
                 script {
+                    sh 'ls -ltr'
                     sh 'docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
                     docker.withRegistry('', 'docker-cred') {
