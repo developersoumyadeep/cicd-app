@@ -28,7 +28,7 @@ pipeline {
                 script {
                     sh 'ls -ltr'
                     sh 'apk add openrc --no-cache'
-                    sh 'apk add docker && service docker start'
+                    sh 'apk add docker'
                     sh 'addgroup root docker'
                     sh 'docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
