@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Build and Test'){
             steps {
+                sh 'whoami'
                 sh 'echo "building and testing"'
                 sh 'mvn clean package'
             }
