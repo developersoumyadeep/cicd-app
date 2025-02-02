@@ -18,6 +18,21 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Build and push image') {
+            environment {
+                DOCKER_IMAGE = "soumyadeep90014842/cicd-app:${BUILD_NUMBER}"
+                REGISTRY_CREDENTIALS = credentials('docker-cred')
+            }
+            steps {
+                script {
+                    sh 'docker build -t ${DOCKER_IMAGE} .'
+                    def dockerImage = docker.image("${DOCKER_IMAGE}")
+                    docker.withRegistry('', 'docker-cred') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
 
     }
 }
