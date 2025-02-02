@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.9.9-amazoncorretto-17-alpine'
+            image 'abhishekf5/maven-abhishek-docker-agent:v1'
             args '--user root'
         }
     }
@@ -27,9 +27,9 @@ pipeline {
             steps {
                 script {
                     sh 'ls -ltr'
-                    sh 'apk add openrc --no-cache'
-                    sh 'apk add docker'
-                    sh 'addgroup root docker'
+//                     sh 'apk add openrc --no-cache'
+//                     sh 'apk add docker'
+//                     sh 'addgroup root docker'
                     sh 'docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
                     docker.withRegistry('', 'docker-cred') {
