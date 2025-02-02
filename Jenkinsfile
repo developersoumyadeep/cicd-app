@@ -27,6 +27,7 @@ pipeline {
             steps {
                 script {
                     sh 'ls -ltr'
+                    sh 'apk add openrc --no-cache'
                     sh 'apk add docker && service docker start'
                     sh 'addgroup root docker'
                     sh 'docker build -t ${DOCKER_IMAGE} .'
