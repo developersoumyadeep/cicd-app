@@ -4,7 +4,7 @@ pipeline {
 //             image 'abhishekf5/maven-abhishek-docker-agent:v1'
 //             image 'maven:3.9.9-amazoncorretto-17-alpine'
             image 'soumyadeep90014842/maven-docker-jenkins-agent:1.0.0'
-            args '--user root'
+            args '--user root -v "/var/run/docker.sock:/var/run/docker.sock:rw"'
         }
     }
     stages {
