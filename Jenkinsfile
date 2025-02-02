@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     sh 'ls -ltr'
-                    sh 'apt install docker.io'
+                    sh 'apk install docker.io'
                     sh 'sudo docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
                     docker.withRegistry('', 'docker-cred') {
