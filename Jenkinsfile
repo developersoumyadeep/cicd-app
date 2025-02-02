@@ -1,7 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'abhishekf5/maven-abhishek-docker-agent:v1'
+//             image 'abhishekf5/maven-abhishek-docker-agent:v1'
+            image 'maven:3.9.9-amazoncorretto-17-alpine'
             args '--user root'
         }
     }
