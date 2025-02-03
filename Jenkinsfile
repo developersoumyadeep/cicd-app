@@ -39,16 +39,12 @@ pipeline {
         }
         stage('Update kubernetes deployment file'){
             environment {
-                       GIT_REPO_NAME = "cicd-app-deployment"
+                       GIT_REPO_NAME = "cicd-app"
                        GIT_USER_NAME = "developersoumyadeep"
                    }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                    git branch: 'master', url: 'https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}'
                     sh '''
-                       pwd
-                       ls
-                       cd ${GIT_REPO_NAME}
                        git status
                        git config user.email "developewithsoumyadeep@gmail.com"
                        git config user.name "Soumyadeep Ganguly"
