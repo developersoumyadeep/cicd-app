@@ -41,7 +41,7 @@ pipeline {
             environment {
                        GIT_REPO_NAME = "cicd-app"
                        GIT_USER_NAME = "developersoumyadeep"
-                       DOCKER_IMAGE = "soumyadeep90014842/cicd-app:${BUILD_NUMBER}
+                       DOCKER_IMAGE = "soumyadeep90014842/cicd-app:${BUILD_NUMBER}"
                    }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
