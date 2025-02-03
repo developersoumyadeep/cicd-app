@@ -28,10 +28,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'ls -ltr'
-//                     sh 'apk add openrc --no-cache'
-//                     sh 'apk add docker'
-//                     sh 'addgroup root docker'
+                    sh 'ls -altr'
                     sh 'docker build -t ${DOCKER_IMAGE} .'
                     def dockerImage = docker.image("${DOCKER_IMAGE}")
                     docker.withRegistry('', 'docker-cred') {
