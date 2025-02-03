@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Update kubernetes deployment file'){
             environment {
-                       GIT_REPO_NAME = "cicd-app"
+                       GIT_REPO_NAME = "cicd-app-deployment"
                        GIT_USER_NAME = "developersoumyadeep"
                    }
             steps {
