@@ -40,6 +40,25 @@ pipeline {
                 }
             }
         }
+        stage('Update kubernetes deployment file'){
+            environment {
+                       GIT_REPO_NAME = "cicd-app"
+                       GIT_USER_NAME = "developersoumyadeep"
+                   }
+            steps {
+                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                       git config user.email "developewithsoumyadeep@gmail.com"
+                       git config user.name "Soumyadeep Ganguly"
+                       BUILD_NUMBER=${BUILD_NUMBER}
+                       sed -i "s/imageTagToReplacedByPipeline/${BUILD_NUMBER}/g" k8s/deployment.yml
+                       git add k8s/deployment.yml
+                       git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                       git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                   '''
+               }
+           }
+        }
 
     }
 }
