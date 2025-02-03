@@ -41,6 +41,7 @@ pipeline {
             environment {
                        GIT_REPO_NAME = "cicd-app"
                        GIT_USER_NAME = "developersoumyadeep"
+                       DOCKER_IMAGE = "soumyadeep90014842/cicd-app:${BUILD_NUMBER}
                    }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
@@ -50,7 +51,7 @@ pipeline {
                        git config user.email "developewithsoumyadeep@gmail.com"
                        git config user.name "Soumyadeep Ganguly"
                        BUILD_NUMBER=${BUILD_NUMBER}
-                       sed -i 's/soumyadeep90014842\\/cicd-app:.*/soumyadeep90014842\\/cicd-app:\\${BUILD_NUMBER}/g' k8s/deployment.yaml
+                       sed -i 's/soumyadeep90014842\\/cicd-app:.*/${DOCKER_IMAGE}/g' k8s/deployment.yaml
                        git add k8s/deployment.yaml
                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
