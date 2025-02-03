@@ -44,9 +44,9 @@ pipeline {
                    }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    git branch: 'master', url: 'https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}'
                     sh '''
                        pwd
-                       git fetch https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
                        ls
                        cd ${GIT_REPO_NAME}
                        git status
