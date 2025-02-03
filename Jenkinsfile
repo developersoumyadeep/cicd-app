@@ -50,7 +50,8 @@ pipeline {
                        git config user.email "developewithsoumyadeep@gmail.com"
                        git config user.name "Soumyadeep Ganguly"
                        BUILD_NUMBER=${BUILD_NUMBER}
-                       sed -i "s/imageTagToReplacedByPipeline/${BUILD_NUMBER}/g" k8s/deployment.yaml
+
+                       sed -i 's/\(image: soumyadeep90014842\/cicd-app:\)[^"]*/\1${BUILD_NUMBER}/g' k8s/deployment.yaml
                        git add k8s/deployment.yaml
                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
