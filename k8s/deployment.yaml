@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: cicd
-        image: soumyadeep90014842/cicd-app:imageTagToReplacedByPipeline
+        image: soumyadeep90014842/cicd-app:6
         ports:
         - containerPort: 8081
