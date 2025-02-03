@@ -45,7 +45,11 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
+                       cd ..
                        pwd
+                       git fetch https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                       ls
+                       cd ${GIT_REPO_NAME}
                        git status
                        git config user.email "developewithsoumyadeep@gmail.com"
                        git config user.name "Soumyadeep Ganguly"
