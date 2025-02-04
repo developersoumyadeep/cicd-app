@@ -17,3 +17,10 @@ spec:
         image: soumyadeep90014842/cicd-app:32
         ports:
         - containerPort: 8081
+        resources:
+          requests:
+            memory: "500M"
+            cpu: "1"
+          limits:
+            memory: "500M"
+            cpu: "1"
