@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: cicd
-        image: ${DOCKER_IMAGE}
+        image: soumyadeep90014842/cicd-app:replaceImageTagByPipeline
         ports:
         - containerPort: 8081
